@@ -1,6 +1,7 @@
 import { cart, removeFromCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
+import { updateCartQuantity } from "../data/cart.js";
 
 let cartSummaryHTML = "";
 
@@ -100,5 +101,9 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
       `.js-cart-item-container-${productId}`
     );
     container.remove();
+
+    updateCartQuantity(".js-products-quantity", " items");
   });
 });
+
+updateCartQuantity(".js-products-quantity", " items");
