@@ -51,6 +51,9 @@ products.forEach((product) => {
 
 document.querySelector(".js-products-grid").innerHTML = productsHTML;
 
+document.querySelector(".js-cart-quantity").innerHTML ===
+  updateCartQuantity(".js-cart-quantity");
+
 let timeout;
 function showAddedMessage(productId) {
   const showAdded = document.querySelector(`.js-added-${productId}`);
@@ -68,7 +71,7 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
     const { productId } = button.dataset;
 
     addToCart(productId);
-    updateCartQuantity(".js-cart-quantity", 0);
+    updateCartQuantity(".js-cart-quantity");
     showAddedMessage(productId);
   });
 });
