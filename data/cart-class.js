@@ -91,7 +91,9 @@ class Cart {
         document.querySelector(link).innerHTML = cartQuantity;
       }
     } else {
-      document.querySelector(link).innerHTML = cartQuantity;
+      document.querySelectorAll(link).forEach((show) => {
+        show.innerHTML = cartQuantity;
+      });
     }
   }
 }
