@@ -2,9 +2,10 @@ import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
 // import "../data/car.js";
 import "../data/cart-class.js";
+import { cart } from "../data/cart-class.js";
 // import "../data/backend-practice.js";
 import { loadProducts } from "../data/products.js";
-import { loadCart } from "../data/cart.js";
+// import { loadCart } from "../data/cart.js";
 
 Promise.all([
   new Promise((resolve) => {
@@ -13,12 +14,12 @@ Promise.all([
     });
   }),
   new Promise((resolve) => {
-    loadCart(() => {
-      resolve("mori");
+    cart.loadCart(() => {
+      resolve();
     });
   }),
 ]).then((names) => {
-  console.log(names);
+  // console.log(names);
   renderOrderSummary();
   renderPaymentSummary();
 });

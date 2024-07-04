@@ -96,12 +96,23 @@ class Cart {
       });
     }
   }
+  loadCart(fun) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("load", () => {
+      console.log(xhr.response);
+      fun();
+    });
+
+    xhr.open("GET", "https://supersimplebackend.dev/cart");
+    xhr.send();
+  }
 }
 
 export const cart = new Cart("cart-oop");
 const businessCart = new Cart("cart-business");
 
-console.log(cart);
-console.log(businessCart);
-console.log(businessCart instanceof Cart);
-console.log(businessCart instanceof Cart);
+// console.log(cart);
+// console.log(businessCart);
+// console.log(businessCart instanceof Cart);
+// console.log(businessCart instanceof Cart);
