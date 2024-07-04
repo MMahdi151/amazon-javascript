@@ -8,13 +8,21 @@ import { loadProducts, loadProductsFetch } from "../data/products.js";
 // import { loadCart } from "../data/cart.js";
 
 async function loadPage() {
-  await loadProductsFetch();
+  try {
+    // throw "error1";
 
-  await new Promise((resolve) => {
-    cart.loadCart(() => {
-      resolve("valueeee");
+    await loadProductsFetch();
+
+    await new Promise((resolve, reject) => {
+      // throw "error2";
+      cart.loadCart(() => {
+        // reject("errorrrr");
+        resolve("valueeee");
+      });
     });
-  });
+  } catch (error) {
+    console.log("Unexpected Error!\nplease try again later.");
+  }
 
   renderOrderSummary();
   renderPaymentSummary();
