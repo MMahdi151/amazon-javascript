@@ -10,6 +10,9 @@ describe("test suite: renderOrderSummary", () => {
     loadProductsFetch().then(() => {
       done();
     });
+    beforeAll(async () => {
+      await loadProductsFetch();
+    });
   });
 
   beforeEach(() => {
