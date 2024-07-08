@@ -52,6 +52,26 @@ class Cart {
     }
     this.saveToStorage();
   }
+  again(productId) {
+    let matchingItem;
+
+    this.cartItems.forEach((cartItem) => {
+      if (productId === cartItem.productId) {
+        matchingItem = cartItem;
+      }
+    });
+    if (matchingItem) {
+      matchingItem.quantity += 1;
+    } else {
+      this.cartItems.push({
+        // productId: productId,
+        productId,
+        quantity: 1,
+        deliveryOptionId: "1",
+      });
+    }
+    this.saveToStorage();
+  }
   removeFromCart(productId) {
     const newCart = [];
 
@@ -96,6 +116,19 @@ class Cart {
       });
     }
   }
+  updateQuantity(productId, newQuantity) {
+    let matchingItem;
+
+    this.cartItems.forEach((cartItem) => {
+      if (productId === cartItem.productId) {
+        matchingItem = cartItem;
+      }
+    });
+
+    matchingItem.quantity = newQuantity;
+
+    this.saveToStorage();
+  }
   loadCart(fun) {
     const xhr = new XMLHttpRequest();
 
@@ -106,6 +139,16 @@ class Cart {
 
     xhr.open("GET", "https://supersimplebackend.dev/cart");
     xhr.send();
+  }
+  async loadCartFetch() {
+    const response = await fetch("https://supersimplebackend.dev/cart");
+    const text = await response.text();
+    console.log(text);
+    return text;
+  }
+  resetCart() {
+    this.cartItems = [];
+    this.saveToStorage();
   }
 }
 
