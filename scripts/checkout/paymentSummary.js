@@ -1,9 +1,11 @@
 // import { cart } from "../../data/cart.js";
 import { cart } from "../../data/cart-class.js";
+// import { resetCart } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import formatCurrency from "../utils/money.js";
 import { addOrder } from "../../data/orders.js";
+import "../../data/cart-class.js";
 
 export function renderPaymentSummary() {
   let productPriceCents = 0;
@@ -84,6 +86,8 @@ export function renderPaymentSummary() {
         console.log("Unexpected error!\ntry again later.");
       }
 
+      // resetCart();
+      cart.resetCart();
       window.location.href = "orders.html";
     });
 }
